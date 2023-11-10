@@ -29,6 +29,12 @@ results are saved in another desktop folder.
 - Preserves timestamps for contextual relevance.
 - Outputs in a format compatible with NLP models and LLMs.
 
+### Installation
+
+``ssh
+go get github.com/kmesiab/go-script-tokenizer@v.0.1.0-alpha
+``
+
 ## Getting Started
 
 ### Prerequisites

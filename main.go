@@ -128,7 +128,7 @@ func saveTranscriptFile(sentences []string, filename string) error {
 		contents += sentence
 	}
 
-	filename = "processed_" + filename
+	filename = OutputFolderName + "/processed_" + filename
 	fullPath, err := filepath.Abs(filename)
 
 	if err != nil {
@@ -187,14 +187,14 @@ func tokenizeUtterances(transcriptFile *TranscriptFile) (*[][]Utterance, error) 
 
 		if currentSpeaker != item.SpeakerLabel {
 
-			// Reset the current speaker
-			currentSpeaker = item.SpeakerLabel
-
 			// If we detected some speech, add the sentence
 			// to the list of sentences
 			if len(sentence) > 0 {
 				sentences = append(sentences, sentence)
 			}
+
+			// Reset the current speaker
+			currentSpeaker = item.SpeakerLabel
 
 			// The current collection of utterances for currentSpeaker
 			sentence = []Utterance{}
@@ -214,7 +214,7 @@ func tokenizeUtterances(transcriptFile *TranscriptFile) (*[][]Utterance, error) 
 func parseTranscriptFile(file *os.DirEntry) (*TranscriptFile, error) {
 	var transcriptFile TranscriptFile
 
-	filename := OutputFolderName + "/" + (*file).Name()
+	filename := InputFolderName + "/" + (*file).Name()
 	var absFilename string
 	var fileBytes []byte
 	var err error

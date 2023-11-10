@@ -1,6 +1,6 @@
 # 🎙️ Go-Script-Tokenizer
 
-![Build](https://github.com/kmesiab/go-token-sdk/actions/workflows/go.yml/badge.svg)
+![Build](https://github.com/kmesiab/go-script-tokenizer/actions/workflows/go.yml/badge.svg)
 
 ![Golang](https://img.shields.io/badge/Go-00add8.svg?labelColor=171e21&style=for-the-badge&logo=go)
 ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
@@ -9,8 +9,17 @@
 
 ![Go-Script-Tokenizer Mascot](https://github.com/kmesiab/go-script-tokenizer/blob/main/assets/go-script-tokenizer-mascot-png.png)
 
+Go-Script-Tokenizer is a Go-based utility that converts AWS Transcribe
+JSON output into a structured, tokenized format, ready for ingestion
+by Large Language Models (LLMs).
 
-Go-Script-Tokenizer is a Go-based utility that converts AWS Transcribe JSON output into a structured, tokenized format, ready for ingestion by Large Language Models (LLMs).
+> ℹ️ You can use this tokenizer in conjunction with
+[Go Audibly](https://github.com/kmesiab/go-audibly)
+to create an audio transcription pipeline.
+
+>🔊 Go Audibly watches a folder for new files. Upon detecting one, it uploads 
+the file to an AWS S3 bucket and starts an AWS Transcribe job. The transcribed 
+results are saved in another desktop folder.
 
 ## Features
 
@@ -39,11 +48,14 @@ go get github.com/kevin-mesiab/go-script-tokenizer
 go run main.go -input="path/to/transcribe.json"
 ```
 
-Replace `path/to/transcribe.json\` with the actual path to your AWS Transcribe JSON file.
+Replace `path/to/transcribe.json\` with the actual path to your
+AWS Transcribe JSON file.
 
 ## Contributing
 
-Contributions are what make the open-source community such a fantastic place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+Contributions are what make the open-source community such a fantastic
+place to learn, inspire, and create. Any contributions you make are
+**greatly appreciated**.
 
 1. Fork the Project
 2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)

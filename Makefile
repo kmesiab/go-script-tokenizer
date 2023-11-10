@@ -3,7 +3,7 @@
 # 🌍 Run app
 run:
 	@echo "Starting!"
-	source .env && go build . && go run .
+	source .env && go build . && ./go-script-tokenizer.
 
 # 🏗 Go build and test targets
 build:

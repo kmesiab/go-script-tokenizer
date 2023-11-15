@@ -8,6 +8,7 @@ import (
 	"path/filepath"
 	"slices"
 	"strconv"
+	"strings"
 	"sync"
 )
 
@@ -26,8 +27,16 @@ var stopWords = []string{
 	"uh",
 }
 
+var speakerLabels = map[string]string{
+	"spk_0": "psychic",
+	"spk_1": "caller",
+	"spk_2": "unknown_1",
+	"spk_3": "unknown_2",
+	"spk_4": "unknown_3",
+}
+
 func main() {
-	// get the ars for the folder to scan
+	// get the args for the folder to scan
 	err := ScanForTranscriptFiles(InputFolderName, onFileDetected)
 	if err != nil {
 		return
@@ -148,20 +157,20 @@ func generateSentences(conversation *[][]Utterance) (*[]string, error) {
 
 	var sentences []string
 
-	// sentenceFormat = `[start_time, end_time, speaker_label, content]`
-	const sentenceFormat = "%s: %s\n"
+	const sentenceFormat = `{"role": "%s", "text": "%s"}` + "\n"
 
 	for _, utterances := range *conversation {
 
-		var speaker = utterances[0].SpeakerLabel
+		var speaker = speakerLabels[utterances[0].SpeakerLabel]
 
 		var content string
 		for _, utterance := range utterances {
 
-			content += " " + utterance.Words
+			content += utterance.Words + " "
 		}
 
-		sentence := fmt.Sprintf(sentenceFormat, speaker, content)
+		sentence := strings.Trim(content, " ")
+		sentence = fmt.Sprintf(sentenceFormat, speaker, sentence)
 		sentences = append(sentences, sentence)
 	}
 
